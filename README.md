@@ -20,8 +20,8 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 
 | Field Name  | Data Type | Description |
 | ------------- | ------------- |
-| cicid  | Integer  |
-| Content Cell  | Content Cell  |
+| cicid  | Integer  | test |
+| Content Cell | Content Cell  | test |
 
 
 | First Header  | Second Header |
