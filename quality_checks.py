@@ -2,8 +2,6 @@ import unittest
 from etl import input_bucket, output_bucket, os, configparser
 from pyspark.sql import SparkSession
 
-# export PYSPARK_PYTHON=python3
-
 config = configparser.ConfigParser()
 config.read('dl.cfg')
 
@@ -30,20 +28,18 @@ def create_spark_session():
 
 
 class TestETL(unittest.TestCase):
+     """
+    - Here we are going test that the parquet tables have data inside them
+    """
     spark = create_spark_session()
 
     def test_demographic_table_successful(self):
-        print(f"{output_bucket}/demographic/demographic_table.parquet")
         test_df = self.spark.read.parquet(f"{output_bucket}/demographic/demographic_table.parquet")
-        print(test_df.count())
-
         self.assertTrue(test_df.count() > 0)
-        test_df.printSchema()
 
     def test_fact_table_successful(self):
         fact_df = self.spark.read.parquet(f"{output_bucket}/immigrant_fact_table/immigrant_fact_table.parquet")
         self.assertTrue(fact_df.count() < 0)
-        print(fact_df.count())
 
 
 if __name__ == '__main__':
