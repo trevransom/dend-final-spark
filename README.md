@@ -20,8 +20,20 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 
 | Field Name  | Data Type | Description |
 | ------------- | ------------- | ---- |
-| cicid  | Integer  | test |
-| Content Cell | Content Cell  | test |
+| cicid  | Integer  | The immigrant unique id |
+| origin_country | String  | test |
+| arrival_city | String | test |
+| state_code | String | test |
+| temp_id | String | test |
+| City | String | test |
+| Country | String | test |
+| AverageTemperature | Float | test | 
+| dg_id | String | test |
+| city | String | test |
+| total_population | Integer | test |
+
+
+'cicid', 'origin_country', 'arrival_city', 'state_code'
 
 
 | First Header  | Second Header |
@@ -39,5 +51,34 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 - Fill in the dl_template with your own custom details
 - SSH into the EMR cluster and upload your `dl_template.cfg` and `etl.py` files
 - Run `spark-submit etl.py` to initialize the spark job and write the resultant tables to parquet files in your s3 output path
+
+
+
+
+
+Data Dictionary 
+
+Immigrant Table (general info on travel from immigrants to the USA)
+cicid 
+city from
+city to
+country from
+
+temperature
+id
+city
+avg_temperature
+country
+
+demographic (general city info - populations) (USA only - we’ll use this for population information)
+id (serial)
+city
+state
+population
+
+fact table (foreign keys of tables + 1 metric
+cicid id 
+temp_to_id (this requires aggregation) (from temperature table where temperature city and country equals immigrant USA destination city and country)
+Demographic id (city they moved to) (from demographic table where city and state code equals immigrant destination city and state code (in the arrive city )
 
 
