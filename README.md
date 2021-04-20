@@ -17,6 +17,7 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 
 ## Data Dictionary
 
+
 | Field Name  | Data Type | Description |
 | ------------- | ------------- |
 | cicid  | Integer  |
