@@ -33,15 +33,6 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 | total_population | Integer | The total population of a given city |
 
 
-'cicid', 'origin_country', 'arrival_city', 'state_code'
-
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-
 ## How to run
 
 - Start by cloning this repository
