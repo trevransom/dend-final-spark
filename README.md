@@ -19,7 +19,7 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 
 
 | Field Name  | Data Type | Description |
-| ------------- | ------------- |
+| ------------- | ------------- | ---- |
 | cicid  | Integer  | test |
 | Content Cell | Content Cell  | test |
 
