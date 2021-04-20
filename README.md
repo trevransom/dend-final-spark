@@ -1,6 +1,44 @@
 # Udacity Final Project - Spark + AWS Data Lake and ETL
 
-## Project Summary
+## Purpose of this Project
+
+I'd like to prepare this database for an analytics table.
+
+
+## Steps to clean data
+
+
+I took the step of dropping duplicates in order to remove duplicate data from all my dataframes. Also there were white spaces in the state names and I was making a composite key, so I chose to clean that up by replacing whitespaces with an underscore in my composite primary key.
+
+## Data Model and steps to ETL
+
+I decided to create a dat
+
+Immigrant Table (general info on travel from immigrants to the USA)
+cicid 
+city from
+city to
+country from
+
+temperature
+id
+city
+avg_temperature
+country
+
+demographic (general city info - populations) (USA only - we’ll use this for population information)
+id (serial)
+city
+state
+population
+
+fact table (foreign keys of tables + 1 metric
+cicid id 
+temp_to_id (this requires aggregation) (from temperature table where temperature city and country equals immigrant USA destination city and country)
+Demographic id (city they moved to) (from demographic table where city and state code equals immigrant destination city and state code (in the arrive city )
+
+
+
 
 Sparkify, a music streaming startup, wanted to collect logs they have on user activity and song data and centralize them in a database in order to run analytics. This AWS S3 data lake, set up with a star schema, will help them to easily access their data in an intuitive fashion and start getting rich insights into their user base.
 
@@ -12,8 +50,8 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 
 ## Database structure overview
 
-![ER Diagram](https://udacity-reviews-uploads.s3.us-west-2.amazonaws.com/_attachments/38715/1607614393/Song_ERD.png)
-*From Udacity*
+![ER Diagram](https://github.com/trevransom/dend-final-spark/blob/039dd79ab998b6474b6e30ce91b0f41f32b421b3/db_er_diagram.png)
+
 
 ## Data Dictionary
 
