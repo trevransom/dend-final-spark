@@ -21,16 +21,16 @@ My client Sparkify has moved to a cloud based system and now keeps their big dat
 | Field Name  | Data Type | Description |
 | ------------- | ------------- | ---- |
 | cicid  | Integer  | The immigrant unique id |
-| origin_country | String  | test |
-| arrival_city | String | test |
-| state_code | String | test |
-| temp_id | String | test |
-| City | String | test |
-| Country | String | test |
-| AverageTemperature | Float | test | 
-| dg_id | String | test |
-| city | String | test |
-| total_population | Integer | test |
+| origin_country | String  | The immigrant's origin country |
+| arrival_city | String | The immigrant's arrival city in the USA |
+| state_code | String | The immigrant's arrival state in the USA |
+| temp_id | String | The identifier for each unique combination of city and state |
+| City | String | The city where the temperature was taken |
+| Country | String | The country where the temperature was taken |
+| AverageTemperature | Float | The average temperature from 2008-2013 for that particular city | 
+| dg_id | String | The unique identifier for the city and state |
+| city | String | The city where the population was taken |
+| total_population | Integer | The total population of a given city |
 
 
 'cicid', 'origin_country', 'arrival_city', 'state_code'
