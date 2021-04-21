@@ -1,17 +1,14 @@
 import configparser
-from datetime import datetime
 import os
 import boto3
 from pyspark.sql import SparkSession
-from pyspark.sql.types import *
-from pyspark.sql.functions import udf, col, create_map, lit, asc, desc, split, initcap, trim, concat, lower, translate
-from pyspark.sql.functions import year, month, dayofmonth, hour, weekofyear, date_format
+from pyspark.sql.functions import col, create_map, lit, split, initcap, trim, concat, lower, translate
+from pyspark.sql.functions import year
 from pyspark.sql.types import IntegerType, FloatType
 import sys
+from itertools import chain
 sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf8', buffering=1)
 
-from itertools import chain
-import glob
 
 config = configparser.ConfigParser()
 config.read('dl.cfg')
@@ -95,15 +92,16 @@ def process_immigration_data(spark, input_bucket, output_bucket):
     dg_table = spark.table('dg_table')
     temp_table = spark.table('temp_table')
    
-    immigrant_fact_table = immigration_table.join(dg_table, (immigration_table.arrival_city == dg_table.city) \
-                                            & (immigration_table.state_code == dg_table.state_code))\
+    immigrant_fact_table = immigration_table.join(dg_table, (immigration_table.arrival_city == dg_table.city)
+                                                            & (immigration_table.state_code == dg_table.state_code))\
                                             .join(temp_table, (immigration_table.arrival_city == temp_table.City)
-                                            & (temp_table.Country == 'United States')).dropDuplicates()   
+                                                            & (temp_table.Country == 'United States')).dropDuplicates()   
 
     immigrant_fact_table = immigrant_fact_table['cicid', 'temp_id', 'dg_id'].drop_duplicates()
        
     # write immigrant_fact_table table to parquet files
     immigrant_fact_table.write.mode('overwrite').parquet(output_bucket+'/immigrant_fact_table/immigrant_fact_table.parquet')
+
 
 def process_temperature_data(spark, input_bucket, output_bucket):
     """
@@ -147,7 +145,7 @@ def process_demographic_data(spark, input_bucket, output_bucket):
     dg_df = spark.read.options(inferSchema='True', delimiter=';', header='True').csv(dg_data_path)
     dg_df = dg_df.withColumnRenamed("Total Population", "total_population")
     dg_df = dg_df.withColumnRenamed("State Code", "state_code")
-    
+
     # extract the relevant fields and create a new table
     dg_table = dg_df["city", "state", 'state_code', "total_population"].dropDuplicates()
     dg_table = dg_table.withColumn("dg_id", lower(concat(col('city'), lit('_'), col('state_code'))))
